@@ -1,0 +1,17 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+)
+
+const VERSION = "1.0"
+
+func main() {
+	VERS := flag.Bool("version", false, "version")
+	flag.Parse()
+
+	if *VERS {
+		fmt.Println("VERSION:", VERSION)
+	}
+}
