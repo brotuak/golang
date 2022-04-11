@@ -1,4 +1,4 @@
-package main
+lag.Bool("version", false, "version")package main
 
 import (
 	"flag"
@@ -8,10 +8,12 @@ import (
 const VERSION = "1.0"
 
 func main() {
-	VERS := flag.Bool("version", false, "version")
+	vers := flag.Bool("version", false, "version")
+	vers2 := flag.Bool("v", false, "version")
 	flag.Parse()
 
-	if *VERS {
+	if *vers2 || *vers {
 		fmt.Println("VERSION:", VERSION)
 	}
 }
+
