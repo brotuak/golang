@@ -1,0 +1,26 @@
+package main
+
+import (
+	"flag"
+	"fmt"
+	"io/ioutil"
+	"log"
+)
+
+const VERSION = "1.0"
+
+func main() {
+	vers := flag.Bool("version", false, "version")
+	vers2 := flag.Bool("v", false, "version")
+	flag.Parse()
+
+	if *vers2 || *vers {
+		fmt.Println("VERSION:", VERSION)
+	}
+	content, err := ioutil.ReadFile("test.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("File contents: %s", content)
+	fmt.Printf("\nSize: %d bytes", len(content))
+}
