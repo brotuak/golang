@@ -1,0 +1,46 @@
+package main
+
+import (
+	"crypto/sha256"
+	"flag"
+	"fmt"
+	"io/ioutil"
+	"log"
+)
+
+const VERSION = "1.0"
+
+func main() {
+	vers := flag.Bool("version", false, "version")
+	vers2 := flag.Bool("v", false, "version")
+	flag.Parse()
+
+	if *vers2 || *vers {
+		fmt.Println("VERSION:", VERSION)
+	}
+	content, err := ioutil.ReadFile("image_1.jpg")
+	if err != nil {
+		log.Fatal(err)
+	}
+	content1, err1 := ioutil.ReadFile("image_2.jpg")
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+	content2, err2 := ioutil.ReadFile("image_3.jpg")
+	if err2 != nil {
+		log.Fatal(err2)
+	}
+	sum := sha256.Sum256(content)
+	sum1 := sha256.Sum256(content1)
+	sum2 := sha256.Sum256(content2)
+
+	equal1 := sum == sum1
+	equal2 := sum == sum2
+	equal3 := sum1 == sum2
+
+	fmt.Printf("%x\n%x\n%x\n", sum, sum1, sum2)
+	fmt.Printf("Size: %d bytes\n", len(content))
+	fmt.Println("image 1 et 2: ", equal1)
+	fmt.Println("image 1 et 3: ", equal2)
+	fmt.Println("image 2 et 3: ", equal3)
+}
