@@ -1,0 +1,16 @@
+func main() {
+	test := User{
+		Login:    "Paul",
+		Password: "pass123",
+	}
+	b, err := json.Marshal(test)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	os.Stdout.Write(b)
+}
+
+type User struct {
+	Password string
+	Login    string `json:"userName"`
+}
