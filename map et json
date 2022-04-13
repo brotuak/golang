@@ -1,0 +1,20 @@
+var stock map[string]User //je défini une map avec clé ID et Nom string
+
+//Lire un fichier JSON, le désarialiser, stocker dans une struct puis resérialiser et afficher
+func main() {
+
+	var users []User
+	file, err := ioutil.ReadFile("user.json")
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+	json.Unmarshal(file, &users)
+	stock := make(map[string]User) //initialisation de la map avec le mot clé make pour la créer
+	for i := 0; i < 2; i++ {
+		//b1, _ := json.Marshal(users[i])
+		stock[users[i].UserID] = users[i] //on remplis la map stock avec les users
+		//stock[users[i].UserID] = users[User.Password, User.Login, User.UserID]
+		//fmt.Println(string(b1))
+	}
+	fmt.Println(stock)
+}
